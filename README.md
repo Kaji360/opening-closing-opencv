@@ -53,21 +53,35 @@ Create a structuring element (kernel) of suitable size.
 
 Compare the original, opened, and closed images.
 
-## Program
+
 
 ## Developed By
 
-**Name:** ____________________________
+**Name: KAJENDERAN  T** 
 
-**Register No:** ______________________
+**Register No:212225040163** 
 
-## Output
 
+## Program
 ### Original Image
 
 - The input image is displayed.
 - The image serves as the source for morphological processing.
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
+image = np.zeros((300, 500), dtype=np.uint8)
+
+cv2.putText(image, "MORPHOLOGY", (30, 150),
+            cv2.FONT_HERSHEY_SIMPLEX, 1.5, 255, 5)
+
+plt.imshow(image, cmap="gray")
+plt.title("Original Image")
+plt.axis("off")
+plt.show()
+```
 ### Opening Operation
 
 - Original image is displayed.
@@ -75,6 +89,64 @@ Compare the original, opened, and closed images.
 - Small foreground noise is removed.
 - Thin protrusions and isolated pixels are eliminated.
 - Object boundaries become smoother.
+```
+kernel = np.ones((5, 5), np.uint8)
+
+opening = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
+
+plt.imshow(opening, cmap="gray")
+plt.title("Opening Operation")
+plt.axis("off")
+plt.show()
+```
+### Closing Operation
+
+```
+closing = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
+
+plt.imshow(closing, cmap="gray")
+plt.title("Closing Operation")
+plt.axis("off")
+plt.show()
+```
+### comparison of three
+```
+plt.figure(figsize=(12, 4))
+
+plt.subplot(1, 3, 1)
+plt.imshow(image, cmap="gray")
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1, 3, 2)
+plt.imshow(opening, cmap="gray")
+plt.title("Opening")
+plt.axis("off")
+
+plt.subplot(1, 3, 3)
+plt.imshow(closing, cmap="gray")
+plt.title("Closing")
+plt.axis("off")
+
+plt.show()
+```
+## Output
+### Original Image
+
+- The input image is displayed.
+- The image serves as the source for morphological processing.
+<img width="653" height="429" alt="image" src="https://github.com/user-attachments/assets/9c21f1dd-b2d2-40e4-8f6b-a7bd4b1b54bd" />
+
+  
+### Opening Operation
+
+- Original image is displayed.
+- Opened image is displayed.
+- Small foreground noise is removed.
+- Thin protrusions and isolated pixels are eliminated.
+- Object boundaries become smoother.
+- <img width="665" height="427" alt="image" src="https://github.com/user-attachments/assets/ae9efcae-6a0d-4442-a4ea-0e35f94f93bc" />
+
 
 ### Closing Operation
 
@@ -83,6 +155,13 @@ Compare the original, opened, and closed images.
 - Small holes and gaps inside objects are filled.
 - Broken regions are connected.
 - Object boundaries become more continuous.
+- <img width="655" height="429" alt="image" src="https://github.com/user-attachments/assets/96e2c2b9-40a3-4474-9be1-56c338fe6c7f" />
+
+## Comparison of three
+
+<img width="1198" height="269" alt="image" src="https://github.com/user-attachments/assets/21bcbfd0-f96c-4a7c-afad-c027f56ad09d" />
+
+
 
 ## Applications
 
